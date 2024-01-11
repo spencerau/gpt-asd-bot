@@ -109,37 +109,8 @@ while True:
 
     thread, run = create_thread_and_run(user_input)
 
-    # # Create a message
-    # message = client.beta.threads.messages.create(
-    #     thread_id=thread.id,
-    #     role="user",
-    #     content=user_input
-    # )
-    
-    # # Run the assistant
-    # run = client.beta.threads.runs.create(
-    #     thread_id=thread.id,
-    #     assistant_id=ASSISTANT_ID
-    #     # this will override the default prompt instructions we have given
-    #     #instructions="Please address the user as Jane Doe. The user has a premium account."
-    # )
-
-    # # Step 5: Check the Run status
-    # # By default, a Run goes into the queued state. You can periodically retrieve the Run to check on its status to see if it has moved to completed.
-    # run = client.beta.threads.runs.retrieve(
-    # thread_id=thread.id,
-    # run_id=run.id
-    # )
-
     # Wait for completion
     wait_on_run(run, thread)
-
-    # # Retrieve all the messages added after our last user message
-    # messages = client.beta.threads.messages.list(
-    #     thread_id=thread.id, 
-    #     order="asc", 
-    #     after=message.id
-    # )
 
     # Pretty print the messages
     pretty_print(get_response(thread))
